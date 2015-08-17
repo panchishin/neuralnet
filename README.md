@@ -3,7 +3,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url] 
 
-neuralnet implementation classic Artificial Neural Net with back propogation for learning.
+An implementation of the classic Artificial Neural Net with back propogation learning.
 
 # Usage
 
