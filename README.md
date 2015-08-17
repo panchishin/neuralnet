@@ -54,7 +54,14 @@ Use backpropogation to train the neural net like so:
 ```js
 var inputArray = [ /* your data */ ]
 var expectedOutputArray = [ /* the expected output */ ]
-neuralnet.train( inputArray , expectedOutputArray )
+var actualPredictionArray = neuralnet.train( inputArray , expectedOutputArray )
+```
+
+# Example
+
+If you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*
+```js
+node example/multiply.js
 ```
 
 

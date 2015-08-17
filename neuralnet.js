@@ -115,10 +115,12 @@ var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer
 		layers : layers,
 		learningRate : learningRate,
 		predict : function( input ) {
-			predict( input , this.layers );
+			predict( input , this.layers )
+			return this.layers[this.layers.length - 1].nodes
 		},
 		train : function( input , output , learningRate ) {
 			train( input , this.layers , output , learningRate || this.learningRate );
+			return this.layers[this.layers.length - 1].nodes
 		},
 		clone : function() {
 			var item = create( { inputs : 1 } );
