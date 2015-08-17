@@ -1,5 +1,7 @@
 # neuralnet - an Artificial Neural Net
 
+[![Join the chat at https://gitter.im/panchishin/neuralnet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/panchishin/neuralnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url] 
 
