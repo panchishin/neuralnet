@@ -60,7 +60,7 @@ var actualPredictionArray = neuralnet.train( inputArray , expectedOutputArray )
 # Example
 
 If you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*
-```js
+```
 node example/multiply.js
 ```
 
