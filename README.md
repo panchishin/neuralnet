@@ -24,6 +24,8 @@ var neuralnet = require('neuralnet')( config );
 
 That creates one instance of a NeuralNet calculator which uses the initial configuration you supply.  All configuration options are optional.
 
+*Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thing of doing so and no need to remove it because it will only help your NeuralNet.
+
 ### neuralnet.layers
 
 You can inspect and modify the data in the layers by accessing the layers, although there probably isn't a need.
@@ -32,7 +34,7 @@ You can inspect and modify the data in the layers by accessing the layers, altho
 ```
 
 ### alphabeta.clone
-Use *.clone* you want another NeuralNet based on the configuration and learning of another NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
+Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
 
 ```js
 var anotherNeuralNet = neuralnet.clone()
