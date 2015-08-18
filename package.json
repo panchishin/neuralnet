@@ -1,6 +1,6 @@
 {
   "name": "neuralnet",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "a general neural net with back propogation for learning",
   "main": "neuralnet.js",
   "devDependencies": {
