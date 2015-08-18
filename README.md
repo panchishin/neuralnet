@@ -22,10 +22,10 @@ If you need more control there are a few more configuration options you can set 
 ```js
 var config = {
 	inputs 				: numberOfInputs , 			// required
-	hiddenLayers 		: numberOfHiddenLayers , 	// default 1
+	hiddenLayers 		: numberOfHiddenLayers , 	// defaults to 1
 	hiddenNodesPerLayer : numberOfNodesPerLayer , 	// defaults to inputs * 5
-	outputs				: numberOfOutputs , 		// default 1
-	learningRate		: learningRate				// defaults to inputs
+	outputs				: numberOfOutputs , 		// defaults to inputs
+	learningRate		: learningRate				// defaults to 1
 }
 var neuralnet = require('neuralnet')( config );
 ```
