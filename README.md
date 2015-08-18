@@ -9,29 +9,32 @@ An implementation of the classic Artificial Neural Net with back propogation lea
 
 ## NeuralNet construction and configuration
 
-Construct a NeuralNet calculator like so:
-
+Super-minimalistic configuration which works in most cases:
 ```js
 var config = {
 	inputs 				: numberOfInputs , 
-	hiddenLayers 		: numberOfHiddenLayers , 
-	hiddenNodesPerLayer : numberOfNodesPerHiddenLayer ,
-	outputs				: numberOfOutputs ,
-	learningRate		: learningRate
+	outputs				: numberOfOutputs
 }
 var neuralnet = require('neuralnet')( config );
 ```
 
-That creates one instance of a NeuralNet calculator which uses the initial configuration you supply.  All configuration options are optional.
-
-*Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thing of doing so and no need to remove it because it will only help your NeuralNet.
-
-### neuralnet.layers
-
-You can inspect and modify the data in the layers by accessing the layers, although there probably isn't a need.
+If you need more control there are a few more configuration options you can set like so:
 ```js
-	var layers = neuralnet.layers
+var config = {
+	inputs 				: numberOfInputs , 			// required
+	hiddenLayers 		: numberOfHiddenLayers , 	// default 1
+	hiddenNodesPerLayer : numberOfNodesPerLayer , 	// defaults to inputs * 5
+	outputs				: numberOfOutputs , 		// default 1
+	learningRate		: learningRate				// defaults to inputs
+}
+var neuralnet = require('neuralnet')( config );
 ```
+
+That creates one instance of a NeuralNet calculator which uses the initial configuration you supply.  Other than 'inputs' all configuration options are optional.
+
+
+*Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thinking of doing so, and no need to remove it because it will only help your NeuralNet.
+
 
 ### alphabeta.clone
 Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
@@ -41,6 +44,7 @@ var anotherNeuralNet = neuralnet.clone()
 ```
 
 ## Execution
+NeuralNet takes an array of decimal numbers, expecting it to be the size of *inputs* in length and returns an array of decimal numbers in length equal to *outputs*.  The numbers the NeuralNet takes as input is any decimal number from 0.0 to 1.0.  For output the reasonable range is more like 0.1 to 0.9.  If you want to input and output numbers outside of this range you'll need to do the mathmatical mapping.  Typically though the input is used in a binary way, either exactly 0 or exactly 1, as is the expected output for training purposes.  In this case the predicted output is rounded such that an output of 0.3 becomes 0 and similarly something like 0.6 becomes 1.
 
 ### neuralnet.predict( inputArray )
 
@@ -56,7 +60,7 @@ Use backpropogation to train the neural net like so:
 ```js
 var inputArray = [ /* your data */ ]
 var expectedOutputArray = [ /* the expected output */ ]
-var actualPredictionArray = neuralnet.train( inputArray , expectedOutputArray )
+var actualPredictionArray = neuralnet.train(inputArray,expectedOutputArray)
 ```
 
 # Example
@@ -74,6 +78,16 @@ Boolean operations is the classic use of Neural Nets, either fire or don't fire.
 ```
 node example/rock_paper_sissors.js
 ```
+
+# Errata
+
+## neuralnet.layers
+
+You can inspect and modify the data in the layers by accessing the layers, although there probably isn't a need.
+```js
+	var layers = neuralnet.layers
+```
+
 
 # References
 

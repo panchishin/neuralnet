@@ -88,7 +88,7 @@ var train = function( input , layers , expectedOutput , learningRate ) {
 
 var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer , outputs ) {
 	request = request || {}
-	var inputs = request.inputs
+	var inputs = request.inputs || 2
 	var hiddenLayers = request.hiddenLayers || 1
 	var hiddenNodesPerLayer = request.hiddenNodesPerLayer || inputs * 5
 	var outputs = request.outputs || inputs
@@ -128,9 +128,7 @@ var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer
 			item.learningRate = this.learningRate;
 			return item;
 		}
-	}
-
-		
+	}		
 }
 
 var clone = function( data ) {

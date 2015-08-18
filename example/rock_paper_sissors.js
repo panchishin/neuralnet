@@ -43,17 +43,9 @@ function createOutputs(player1,player2) {
 }
 
 function doOneTraining() {
-	var a = random()
-	var b = random()
-
-	neuralnet.train( createInputs(a,b) , createOutputs(a,b) )
-}
-
-function doOnePredictionAndGetError() {
-	var a = random()
-	var b = random()
-
-	return neuralnet.predict( createInputs(a,b) )
+	for( var a = 0 ; a < 3 ; a ++)
+		for( var b = 0 ; b < 3 ; b ++)
+			neuralnet.train( createInputs(a,b) , createOutputs(a,b) )
 }
 
 
@@ -65,8 +57,8 @@ function example() {
 		return "'"+Math.round(num * 100)+"'"
 	}
 
-	var a = random()
-	var b = random()
+	for( var a = 0 ; a < 3 ; a ++)
+	for( var b = 0 ; b < 3 ; b ++) {
 
 	var inputs = createInputs(a,b)
 	var predicted = neuralnet.predict( inputs )
@@ -79,30 +71,25 @@ function example() {
 		choices[a]+" vs "+ choices[b] +
 		" expect "+expected+
 		" and was "+predicted+
-		" which is " + ( expected == predicted ? "good" : "BAD" )
+		" which is " + ( expected == predicted ? "correct" : "INCORRECT" )
 		)
+	}
 }
 
 console.log("\nPrior to training, here is how it preforms:\n")
-
-for(var count=0 ; count<10 ; count++) {
-	example()
-}
+example()
 
 
-var TRAINING = 5000
+var TRAINING = 1000
 
 console.log("\n=== Training starts ===");
 for( var count = 0 ; count < TRAINING ; count ++) {
 	doOneTraining()
-	if ( count % 100 == 0 ) { process.stdout.write(".") }
+	if ( count % 20 == 0 ) { process.stdout.write(".") }
 }
 console.log("\n=== Training ends ===");
 
 console.log("\nHere is how it preforms after training "+TRAINING+" iterations:\n")
-
-for(var count=0 ; count<10 ; count++) {
-	example()
-}
+example()
 
 console.log()
