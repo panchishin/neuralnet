@@ -1,15 +1,15 @@
 
 console.log("\nTest the learning capabilities of an Artificial Neural Net by learning the rules of Rock Paper Sissors. There are 3 boolean inputs (rock, paper, sissors) for each player, and 1 boolean output (win/no win) for each.")
 
-var ROCK = 0
-var PAPER = 1
-var SISSORS = 2
+var ROCK = 0 , PAPER = 1 , SISSORS = 2
 
 var config = {
 	inputs 				: 6 ,
-	hiddenNodesPerLayer	: 20 ,  /* found through trial and error */
+	hiddenNodesPerLayer	: 4 ,	/* these are simple rules */
 	outputs				: 2
 }
+
+console.log("The config is " + JSON.stringify(config))
 
 var neuralnet = require("../neuralnet.js")(config)
 
@@ -80,7 +80,7 @@ console.log("\nPrior to training, here is how it preforms:\n")
 example()
 
 
-var TRAINING = 1000
+var TRAINING = 500
 
 console.log("\n=== Training starts ===");
 for( var count = 0 ; count < TRAINING ; count ++) {
