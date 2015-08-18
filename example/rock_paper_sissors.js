@@ -18,27 +18,27 @@ function random() {
 }
 
 function createInputs(player1,player2) {
-	var result = [ 0 , 0 , 0 , 0 , 0 , 0 ]
-	result[player1] = 1
-	result[3+player2] = 1
+	var result = [ false , false , false , false , false , false ]
+	result[player1] = true
+	result[3+player2] = true
 	return result
 }
 
 function createOutputs(player1,player2) {
 	if ( player1 == ROCK && player2 == PAPER ) {
-		return [ 0 , 1 ]
+		return [ false , true ]
 	} else if ( player1 == ROCK && player2 == SISSORS ) {
-		return [ 1 , 0 ]
+		return [ true , false ]
 	} else if ( player1 == PAPER && player2 == ROCK ) {
-		return [ 1 , 0 ]
+		return [ true , false ]
 	} else if ( player1 == PAPER && player2 == SISSORS ) {
-		return [ 0 , 1 ]
+		return [ false , true ]
 	} else if ( player1 == SISSORS && player2 == PAPER ) {
-		return [ 1 , 0 ]
+		return [ true , false ]
 	} else if ( player1 == SISSORS && player2 == ROCK ) {
-		return [ 0 , 1 ]
+		return [ false , true ]
 	} else {
-		return [ 0 , 0 ]
+		return [ false , false ]
 	}
 }
 
