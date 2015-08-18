@@ -61,9 +61,7 @@ function example() {
 	for( var b = 0 ; b < 3 ; b ++) {
 
 	var inputs = createInputs(a,b)
-	var predicted = neuralnet.predict( inputs )
-	predicted[0] = Math.round( predicted[0] )
-	predicted[1] = Math.round( predicted[1] )
+	var predicted = neuralnet.predictBoolean( inputs )
 	predicted = JSON.stringify(predicted)
 	var expected = JSON.stringify(createOutputs(a,b))
 

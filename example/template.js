@@ -11,12 +11,9 @@ var neuralnet = require("../neuralnet.js")(neuralNetConfig)
 
 neuralnet.train( sampleInput , sampleOutput )
 
-var predicted = neuralnet.predict( sampleInput )
-
-for( var index in predicted ) {
-	predicted[index] = Math.round(predicted[index])
-}
 
 console.log("\nThe correct result output is : " + sampleOutput )
-console.log("After 1 training sessions, the prediction is : " + predicted + "\n" )
-
+var predicted = neuralnet.predictBoolean( sampleInput )
+console.log("After 1 training sessions, the boolean prediction is : " + predicted )
+predicted = neuralnet.predict( sampleInput )
+console.log("And the grayscale prediction is : " + predicted + "\n" )

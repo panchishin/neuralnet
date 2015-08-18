@@ -118,6 +118,11 @@ var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer
 			predict( input , this.layers )
 			return this.layers[this.layers.length - 1].nodes
 		},
+		predictBoolean : function( input ) {
+			var result = this.predict( input )
+			for( var index in result ) { result[index] = Math.round(result[index]) }
+			return result
+		},
 		train : function( input , output , learningRate ) {
 			train( input , this.layers , output , learningRate || this.learningRate );
 			return this.layers[this.layers.length - 1].nodes

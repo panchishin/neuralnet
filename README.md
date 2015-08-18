@@ -54,6 +54,14 @@ var inputArray = [ /* your data */ ]
 var predictionArray = neuralnet.predict( inputArray )
 ```
 
+### neuralnet.predictBoolean( inputArray )
+
+Same as neuralnet.predict but changes grayscale values into booleans
+```js
+var inputArray = [ /* your data */ ]
+var predictionArray = neuralnet.predictBoolean( inputArray )
+```
+
 
 ### neuralnet.train( inputArray , expectedOutputArray )
 Use backpropogation to train the neural net like so:
@@ -67,17 +75,24 @@ var actualPredictionArray = neuralnet.train(inputArray,expectedOutputArray)
 
 If you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*
 
-## Greyscale example of Multiplication
-Greyscale means using the actual output as it is and not converting it to a true/false.  This example shows that the numeric value of the output can be fairly precise as an estimator, not just a boolean operation.
+## Template
+A simple template which has one input array, one training output array, and trains the NeuralNet once.
 ```
-node example/multiply.js
+node example/template.js
 ```
 
-## Boolean example of Rock Paper Sissors
+## Rock Paper Sissors (Boolean example)
 Boolean operations is the classic use of Neural Nets, either fire or don't fire.  In this example the Neural Net learns which player should win in a game of Rock Paper Sissors.
 ```
 node example/rock_paper_sissors.js
 ```
+
+## Multiplication (Grayscale example)
+Grayscale means using the actual output as it is and not converting it to a true/false.  This example shows that the numeric value of the output can be fairly precise as an estimator, not just a boolean operation.
+```
+node example/multiply.js
+```
+
 
 # Errata
 
