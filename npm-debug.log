@@ -1,0 +1,93 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec { raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/panchishina/Documents/neuralnet',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/panchishina/.npm/neuralnet/0.0.4/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/panchishina/.npm/neuralnet/0.0.4/package.tgz',
+9 verbose tar pack   '/Users/panchishina/Documents/neuralnet' ]
+10 verbose tarball /Users/panchishina/.npm/neuralnet/0.0.4/package.tgz
+11 verbose folder /Users/panchishina/Documents/neuralnet
+12 info prepublish neuralnet@0.0.4
+13 verbose addLocalTarball adding from inside cache /Users/panchishina/.npm/neuralnet/0.0.4/package.tgz
+14 silly cache afterAdd neuralnet@0.0.4
+15 verbose afterAdd /Users/panchishina/.npm/neuralnet/0.0.4/package/package.json not in flight; writing
+16 verbose afterAdd /Users/panchishina/.npm/neuralnet/0.0.4/package/package.json written
+17 silly publish { name: 'neuralnet',
+17 silly publish   version: '0.0.4',
+17 silly publish   description: 'a general neural net with back propogation for learning',
+17 silly publish   main: 'neuralnet.js',
+17 silly publish   devDependencies: { expresso: '0.9.2' },
+17 silly publish   scripts: { test: 'expresso test/*' },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git+https://github.com/panchishin/neuralnet.git' },
+17 silly publish   keywords: [ 'neuralnet', 'ann', 'nn', 'machine learning', 'ai' ],
+17 silly publish   author: { name: 'Anton Panchishin' },
+17 silly publish   license: 'MIT',
+17 silly publish   bugs: { url: 'https://github.com/panchishin/neuralnet/issues' },
+17 silly publish   homepage: 'https://github.com/panchishin/neuralnet',
+17 silly publish   readme: '# neuralnet - an Artificial Neural Net\n\n\n[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url] \n\nAn implementation of the classic Artificial Neural Net with back propogation learning.\n\n# Usage\n\n## NeuralNet construction and configuration\n\nConstruct a NeuralNet calculator like so:\n\n```js\nvar config = {\n\tinputs \t\t\t\t: numberOfInputs , \n\thiddenLayers \t\t: numberOfHiddenLayers , \n\thiddenNodesPerLayer : numberOfNodesPerHiddenLayer ,\n\toutputs\t\t\t\t: numberOfOutputs ,\n\tlearningRate\t\t: learningRate\n}\nvar neuralnet = require(\'neuralnet\')( config );\n```\n\nThat creates one instance of a NeuralNet calculator which uses the initial configuration you supply.  All configuration options are optional.\n\n*Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thing of doing so and no need to remove it because it will only help your NeuralNet.\n\n### neuralnet.layers\n\nYou can inspect and modify the data in the layers by accessing the layers, although there probably isn\'t a need.\n```js\n\tvar layers = neuralnet.layers\n```\n\n### alphabeta.clone\nUse *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.\n\n```js\nvar anotherNeuralNet = neuralnet.clone()\n```\n\n## Execution\n\n### neuralnet.predict( inputArray )\n\nCall the prediction function like so:\n```js\nvar inputArray = [ /* your data */ ]\nvar predictionArray = neuralnet.predict( inputArray )\n```\n\n\n### neuralnet.train( inputArray , expectedOutputArray )\nUse backpropogation to train the neural net like so:\n```js\nvar inputArray = [ /* your data */ ]\nvar expectedOutputArray = [ /* the expected output */ ]\nvar actualPredictionArray = neuralnet.train( inputArray , expectedOutputArray )\n```\n\n# Example\n\nIf you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*\n```\nnode example/multiply.js\n```\n\n\n# References\n\n* [Instructor: Patrick Winston from MIT](https://www.youtube.com/watch?v=q0pm3BrIUFo)\n* [Wikipedia entry for Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network)\n\n\n[gitter-url]: https://gitter.im/panchishin/neuralnet\n[gitter-image]: https://badges.gitter.im/panchishin/neuralnet.png\n[downloads-image]: http://img.shields.io/npm/dm/neuralnet.svg\n\n[npm-url]: https://npmjs.org/package/neuralnet\n[npm-image]: http://img.shields.io/npm/v/neuralnet.svg\n\n[travis-url]: https://travis-ci.org/panchishin/neuralnet\n[travis-image]: http://img.shields.io/travis/panchishin/neuralnet.svg\n\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '5241f29b53620ab848c03dcaeefface0289ff6d4',
+17 silly publish   _id: 'neuralnet@0.0.4',
+17 silly publish   _shasum: 'c8d951f443c9b01536df4c1481e51d32c77cc04b',
+17 silly publish   _from: '.' }
+18 verbose getPublishConfig undefined
+19 silly mapToRegistry name neuralnet
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/neuralnet
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading /Users/panchishina/.npm/neuralnet/0.0.4/package.tgz
+25 verbose request uri https://registry.npmjs.org/neuralnet
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 10:15:10 AM
+28 verbose request using bearer token for auth
+29 verbose request id 23748ab3642f7f24
+30 http request PUT https://registry.npmjs.org/neuralnet
+31 http 403 https://registry.npmjs.org/neuralnet
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '95',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Tue, 18 Aug 2015 14:15:12 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-dfw1821-DFW',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1439907311.229569,VS0,VE842' }
+33 verbose request invalidating /Users/panchishina/.npm/registry.npmjs.org/neuralnet on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 0.0.4." : neuralnet
+35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+35 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+35 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:354:22)
+35 verbose stack     at Request.emit (events.js:110:17)
+35 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1207:14)
+35 verbose stack     at Request.emit (events.js:129:20)
+35 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1153:12)
+35 verbose stack     at IncomingMessage.emit (events.js:129:20)
+35 verbose stack     at _stream_readable.js:908:16
+35 verbose stack     at process._tickCallback (node.js:355:11)
+36 verbose statusCode 403
+37 verbose pkgid neuralnet
+38 verbose cwd /Users/panchishina/Documents/neuralnet
+39 error Darwin 14.3.0
+40 error argv "node" "/usr/local/bin/npm" "publish"
+41 error node v0.12.7
+42 error npm  v2.11.3
+43 error code E403
+44 error "You cannot publish over the previously published version 0.0.4." : neuralnet
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
