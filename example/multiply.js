@@ -7,7 +7,7 @@ console.log(" A * B / 2  , where A and B are a decimal between 0 and 1.\n");
 var config = {
 	inputs 				: 2 , 
 	hiddenLayers 		: 1 , 
-	hiddenNodesPerLayer : 5 ,
+	hiddenNodesPerLayer : 10 ,
 	outputs				: 1 ,
 	learningRate		: 1
 }
@@ -25,27 +25,27 @@ function doOnePredictionAndGetError() {
 	var a = Math.random()
 	var b = Math.random()
 
-	var result =  neuralnet.predict( [ a , b , -1 ] )[0] - (a * b / 2)
-	return result
+	return neuralnet.predict( [ a , b , -1 ] )[0] - (a * b / 2)
 }
 
-var SAMPLES = 100
-var TRAINING = 10
+var TRAINING = 100
 
 function calculateAverageError() {
+	var SAMPLES = 100
+
 	var error = 0;
 	for( var count = 0 ; count < SAMPLES ; count ++) {
-		error += doOnePredictionAndGetError();
+		error += Math.pow( doOnePredictionAndGetError() , 2);
 	}
-	return error / SAMPLES;
+	return Math.pow( error / SAMPLES , 0.5);
 }
 
-console.log(Math.round( calculateAverageError() * 100 ) + "% : The initial average error" )
+console.log(Math.round( calculateAverageError() * 100 ) + "% : The initial RMS error" )
 for( var rounds = 0 ; rounds < 10 ; rounds++ ) {
 	for( var count = 0 ; count < TRAINING ; count ++) {
 		doOneTraining()
 	}
-	console.log(Math.round( calculateAverageError() * 100 ) + "% : average error after " + TRAINING * (rounds + 1) + " training sessions")
+	console.log(Math.abs(Math.round( calculateAverageError() * 100 )) + "% : RMS error after " + TRAINING * (rounds + 1) + " training sessions")
 }
 
 console.log()
