@@ -1,14 +1,16 @@
-# neuralnet - an Artificial Neural Net
-
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url] 
 
 An implementation of the classic Artificial Neural Net with back propogation learning.
 
+# Table Of Contents
+[TOC]
+
 # Usage
 
 ## NeuralNet construction and configuration
 
+### neuralnet = require('neuralnet')( config )
 Super-minimalistic configuration which works in most cases:
 ```js
 var config = {
