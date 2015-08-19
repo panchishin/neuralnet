@@ -1,5 +1,5 @@
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url] 
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url] 
 
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
@@ -125,3 +125,5 @@ You can inspect and modify the data in the layers by accessing the layers, altho
 [travis-url]: https://travis-ci.org/panchishin/neuralnet
 [travis-image]: http://img.shields.io/travis/panchishin/neuralnet.svg
 
+[license-image]: https://img.shields.io/npm/l/express.svg
+[license-url]: https://tldrlegal.com/license/mit-license
