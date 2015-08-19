@@ -36,14 +36,14 @@ That creates one instance of a NeuralNet calculator which uses the initial confi
 *Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thinking of doing so, and no need to remove it because it will only help your NeuralNet.
 
 
-### neuralnet.clone
+### neuralnet.clone( )
 Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
 ```js
 var anotherNeuralNet = neuralnet.clone()
 ```
 
-### neuralnet.new
-use *.new* if you want a new untrained NeuralNet with the same configuration as another NeuralNet.  This is different than clone which copies over all the training.  *.new* leaves the original NeuralNet is unchanged.
+### neuralnet.new( )
+use *.new* if you want a new untrained NeuralNet with the same configuration as another NeuralNet.  This is different than clone which copies over all the training.  *.new* leaves the original NeuralNet unchanged.
 ```js
 var aFreshUntrainedNeuralNet = neuralnet.new()
 ```
@@ -100,7 +100,7 @@ node example/multiply.js
 ```
 
 
-# Errata
+# Misc
 
 ## neuralnet.layers
 
