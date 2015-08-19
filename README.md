@@ -3,9 +3,6 @@
 
 An implementation of the classic Artificial Neural Net with back propogation learning.
 
-# Table Of Contents
-[TOC]
-
 # Usage
 
 ## NeuralNet construction and configuration
