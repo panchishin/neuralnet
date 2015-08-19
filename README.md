@@ -38,9 +38,14 @@ That creates one instance of a NeuralNet calculator which uses the initial confi
 
 ### neuralnet.clone
 Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
-
 ```js
 var anotherNeuralNet = neuralnet.clone()
+```
+
+### neuralnet.new
+use *.new* if you want a new untrained NeuralNet with the same configuration as another NeuralNet.  This is different than clone which copies over all the training.  *.new* leaves the original NeuralNet is unchanged.
+```js
+var aFreshUntrainedNeuralNet = neuralnet.new()
 ```
 
 ## Execution
@@ -70,6 +75,7 @@ var inputArray = [ /* your data */ ]
 var expectedOutputArray = [ /* the expected output */ ]
 var actualPredictionArray = neuralnet.train(inputArray,expectedOutputArray)
 ```
+
 
 # Example
 

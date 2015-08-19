@@ -86,34 +86,37 @@ var train = function( input , layers , expectedOutput , learningRate ) {
 
 }
 
-var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer , outputs ) {
-	request = request || {}
-	var inputs = request.inputs || 2
-	var hiddenLayers = request.hiddenLayers || 1
-	var hiddenNodesPerLayer = request.hiddenNodesPerLayer || inputs * 5
-	var outputs = request.outputs || inputs
-	var learningRate = request.learningRate || 1
-
-	if ( hiddenLayers <= 0 ) { fail("Must have at least 1 hidden layer") }
-	
+function createLayers(config) {
 	var layers = [];
 	
 	var nodes = [];
-	for( var i = 0 ; i <= inputs ; i++ ) {
+	for( var i = 0 ; i <= config.inputs ; i++ ) {
 		nodes.push( -1 );
 	}
 	layers.push( { nodes : nodes } );
 	
-	layers.push( { connections : createRandomConnections( hiddenNodesPerLayer , inputs + 1 ) } );
+	layers.push( { connections : createRandomConnections( config.hiddenNodesPerLayer , config.inputs + 1 ) } );
 
-	for( var h = 1 ; h < hiddenLayers ; h++ ) {
-		layers.push( { connections : createRandomConnections( hiddenNodesPerLayer , hiddenNodesPerLayer ) } );
+	for( var h = 1 ; h < config.hiddenLayers ; h++ ) {
+		layers.push( { connections : createRandomConnections( config.hiddenNodesPerLayer , config.hiddenNodesPerLayer ) } );
 	}
-	layers.push( { connections : createRandomConnections( outputs , hiddenNodesPerLayer ) } );
+	layers.push( { connections : createRandomConnections( config.outputs , config.hiddenNodesPerLayer ) } );
+	return layers
+}
 
+var create = function( configuration ) { //inputs , hiddenLayers , hiddenNodesPerLayer , outputs ) {
+	var config = configuration || {}
+	config = clone(config)
+	config.inputs = config.inputs || 2
+	config.hiddenLayers = config.hiddenLayers || 1
+	config.hiddenNodesPerLayer = config.hiddenNodesPerLayer || config.inputs * 5
+	config.outputs = config.outputs || config.inputs
+	config.learningRate = config.learningRate || 1
+
+	if ( config.hiddenLayers <= 0 ) { fail("Must have at least 1 hidden layer") }
+	
 	return { 
-		layers : layers,
-		learningRate : learningRate,
+		layers : createLayers(config),
 		predict : function( input ) {
 			predict( input , this.layers )
 			return this.layers[this.layers.length - 1].nodes
@@ -124,14 +127,16 @@ var create = function( request ) { //inputs , hiddenLayers , hiddenNodesPerLayer
 			return result
 		},
 		train : function( input , output , learningRate ) {
-			train( input , this.layers , output , learningRate || this.learningRate );
+			train( input , this.layers , output , learningRate || config.learningRate );
 			return this.layers[this.layers.length - 1].nodes
 		},
 		clone : function() {
-			var item = create( { inputs : 1 } );
+			var item = create(config);
 			item.layers = JSON.parse(JSON.stringify( this.layers ));
-			item.learningRate = this.learningRate;
 			return item;
+		},
+		new : function() {
+			return create(config)
 		}
 	}		
 }
