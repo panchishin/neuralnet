@@ -137,6 +137,12 @@ Grayscale means using the actual output as it is and not converting it to a true
 node example/multiply.js
 ```
 
+## Rotation of an image
+Learn to rotate a 4x4 black and white image by 90 degrees.  The 4x4 is printed to the screen so you can see how the NeuralNet is doing.  I was quite amazed at how few learning sessions it needed to solve this problem and how well it does.  Honestly I was expecting it to kinda get it but have some trouble and instead it caught on very quickly and accurately.
+```
+node example/rotate.js
+```
+
 
 # Misc
 
