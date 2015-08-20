@@ -104,14 +104,14 @@ function createLayers(config) {
 	return layers
 }
 
-var create = function( configuration ) { //inputs , hiddenLayers , hiddenNodesPerLayer , outputs ) {
+var create = function( configuration ) {
 	var config = configuration || {}
 	config = clone(config)
 	config.inputs = config.inputs || 2
 	config.hiddenLayers = config.hiddenLayers || 1
 	config.hiddenNodesPerLayer = config.hiddenNodesPerLayer || config.inputs * 5
 	config.outputs = config.outputs || config.inputs
-	config.learningRate = config.learningRate || 1
+	config.learningRate = Math.max(0,config.learningRate * 1.0) || 1
 
 	if ( config.hiddenLayers <= 0 ) { fail("Must have at least 1 hidden layer") }
 	
@@ -130,13 +130,20 @@ var create = function( configuration ) { //inputs , hiddenLayers , hiddenNodesPe
 			train( input , this.layers , output , learningRate || config.learningRate );
 			return this.layers[this.layers.length - 1].nodes
 		},
-		clone : function() {
+		clone : function( ) {
 			var item = create(config);
 			item.layers = JSON.parse(JSON.stringify( this.layers ));
 			return item;
 		},
-		new : function() {
-			return create(config)
+		new : function( configuration ) {
+			return create( configuration || config )
+		},
+		learningRate : function( learningRate ) {
+			config.learningRate = Math.max(0,learningRate * 1.0) || config.learningRate
+			return config.learningRate
+		},
+		config : function() {
+			return clone(config)
 		}
 	}		
 }
