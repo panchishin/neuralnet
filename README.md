@@ -16,8 +16,9 @@ var config = {
 }
 var neuralnet = require('neuralnet')( config );
 ```
+
 That is all the configuration you need to get started.  Jump to [the Execution section](#execution) for the [prediction](#neuralnetpredict-inputarray) and [training](#neuralnettrain-inputarray-expectedoutputarray) functions.
------
+
 #### Full Config
 If you need more control there are a few more configuration options you can set like so:
 ```js
