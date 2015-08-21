@@ -23,7 +23,7 @@
     "ai"
   ],
   "author": "Anton Panchishin",
-  "license": "MIT",
+  "license": "unlicense",
   "bugs": {
     "url": "https://github.com/panchishin/neuralnet/issues"
   },

@@ -178,5 +178,5 @@ var layers = neuralnet.layers
 [travis-url]: https://travis-ci.org/panchishin/neuralnet
 [travis-image]: http://img.shields.io/travis/panchishin/neuralnet.svg
 
-[license-image]: https://img.shields.io/npm/l/express.svg
-[license-url]: https://tldrlegal.com/license/mit-license
+[license-image]: https://img.shields.io/badge/license-Unlicense-green.svg
+[license-url]: https://tldrlegal.com/license/unlicense
