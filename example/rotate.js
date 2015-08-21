@@ -1,27 +1,32 @@
-console.log("Learn to rotate a 4x4 image by 90 degrees")
+var SIZE = 4
+if ( process.argv[2] ) {
+	SIZE = process.argv[2]
+}
+
+console.log("Learn to rotate a "+SIZE+"x"+SIZE+" image by 90 degrees")
 
 function createImage() {
 	var image = []
-	for( var index = 0 ; index < 4*4 ; index++ ) {
-		image.push( ( Math.random() > .8 ? 1 : 0 ) )
+	for( var index = 0 ; index < SIZE*SIZE ; index++ ) {
+		image.push( ( Math.random() > (1 - 1/SIZE) ? 1 : 0 ) )
 	}
 	return image
 }
 
 function rotateImage( image ) {
 	var result = []
-	for( var x = 0 ; x < 4 ; x++ ) for( var y = 0 ; y < 4 ; y++ ) {
-		result.push( image[ (3-y)*4 + x ] )
+	for( var x = 0 ; x < SIZE ; x++ ) for( var y = 0 ; y < SIZE ; y++ ) {
+		result.push( image[ (SIZE-1-y)*SIZE + x ] )
 	}
 	return result
 }
 
 function printImages( images ) {
-	for( var row = 0 ; row < 4 ; row++ ) {
+	for( var row = 0 ; row < SIZE ; row++ ) {
 		for( var image in images ) {
 			process.stdout.write("  | ")
-			for( var column = 0 ; column < 4 ; column++ ) {
-				process.stdout.write( images[image][ row * 4 + column ] ? "X " : "+ " )
+			for( var column = 0 ; column < SIZE ; column++ ) {
+				process.stdout.write( images[image][ row * SIZE + column ] ? "X " : "  " )
 			}
 			process.stdout.write("|")
 		}
@@ -30,23 +35,26 @@ function printImages( images ) {
 }
 
 var neuralNetConfig = {
-	inputs 	: 16 ,
-	outputs	: 16 ,
-	numberOfHiddenLayers : 2
+	inputs 	: SIZE*SIZE ,
+	outputs	: SIZE*SIZE ,
+	hiddenNodesPerLayer : SIZE*SIZE ,
+	hiddenLayers : 1
 }
 
 var neuralnet = require("../neuralnet.js")(neuralNetConfig)
+
+var WHITE = "                                                                       "
 
 function printPrediction() {
 	var input = createImage()
 	var expected = rotateImage(input)
 	var predicted = neuralnet.predictBoolean(input)
-	console.log("\n   Input        Expected     Predicted")
+	console.log("\n   Input" + WHITE.substr(0,SIZE*2) + "Expected" + WHITE.substr(0,SIZE*2-3) + "Predicted")
 	printImages([input,expected,predicted])
 	if ( JSON.stringify(expected) == JSON.stringify(predicted) ) {
-		console.log("                             CORRECT")
+		console.log(WHITE.substr(0,SIZE*4+13) + "CORRECT")
 	} else {
-		console.log("                             *WRONG*")
+		console.log(WHITE.substr(0,SIZE*4+13) + "*WRONG*")
 	}
 }
 
@@ -57,7 +65,7 @@ function train() {
 }
 
 var session = 0
-while( session < 1000 ) {
+while( session < 100*SIZE*SIZE ) {
 	train()
 	if ( session % 250 == 0 ) {
 		console.log("\nCompleted " + session + " training sessions")

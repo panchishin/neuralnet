@@ -141,7 +141,14 @@ node example/multiply.js
 ## Rotation of an image
 Learn to rotate a 4x4 black and white image by 90 degrees.  The 4x4 is printed to the screen so you can see how the NeuralNet is doing.  I was quite amazed at how few learning sessions it needed to solve this problem and how well it does.  Honestly I was expecting it to kinda get it but have some trouble and instead it caught on very quickly and accurately.
 ```
+# the default 4x4 image
 node example/rotate.js
+
+# A more difficult 5x5
+node example/rotate.js 5
+
+# Still succeeds with 8x8
+node example/rotate.js 8
 ```
 
 
