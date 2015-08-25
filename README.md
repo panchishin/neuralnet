@@ -3,6 +3,8 @@
 
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
+*[AlphaBeta](https://www.npmjs.com/package/alphabeta), [GeneticAlgorithm](https://www.npmjs.com/package/geneticalgorithm), and [NeuralNet](https://www.npmjs.com/package/neuralnet) are related npm and github projects.*
+
 # Usage
 
 ## NeuralNet construction and configuration
