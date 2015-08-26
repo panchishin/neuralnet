@@ -1,13 +1,17 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url] 
 
+Related packages : [AlphaBeta](https://www.npmjs.com/package/alphabeta) , [GeneticAlgorithm](https://www.npmjs.com/package/geneticalgorithm) , and [NeuralNet](https://www.npmjs.com/package/neuralnet)
+
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
-*[AlphaBeta](https://www.npmjs.com/package/alphabeta), [GeneticAlgorithm](https://www.npmjs.com/package/geneticalgorithm), and [NeuralNet](https://www.npmjs.com/package/neuralnet) are related npm and github projects.*
+When Artificial Neural Nets were first invented and picked up by mainstream popular science many people believed it was going to usher in a new era of thinking machines.  That was many decades ago.  It turns out that intelligence is more than a few hundred artificial neurons and intelligent operations can be performed with very different solutions, such as [AlphaBeta](https://www.npmjs.com/package/alphabeta).  Even so, Artificial Neural Nets have solved a host of modern problems and continue to be an important component in object and pattern recognition, such as character, music, and face recognition.
+
+Section Links : [Construction](#neuralnet-construction) , [Execution](#execution) , and [Examples](#example)
 
 # Usage
 
-## NeuralNet construction and configuration
+## NeuralNet construction
 
 ### neuralnet = require('neuralnet')( config )
 Super-minimalistic configuration which works in most cases:
