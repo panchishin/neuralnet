@@ -157,6 +157,12 @@ node example/rotate.js 5
 node example/rotate.js 8
 ```
 
+## Projectile (Grayscale example)
+Estimate the motion of a rock (or anything really) being thrown up and then coming back down.
+```js
+example/projectile.js
+```
+
 
 # Misc
 
