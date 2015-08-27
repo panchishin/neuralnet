@@ -1,31 +1,32 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url] 
 
-Related packages : [AlphaBeta](https://www.npmjs.com/package/alphabeta) , [GeneticAlgorithm](https://www.npmjs.com/package/geneticalgorithm) , and [NeuralNet](https://www.npmjs.com/package/neuralnet)
-
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
 When Artificial Neural Nets were first invented and picked up by mainstream popular science many people believed it was going to usher in a new era of thinking machines.  That was many decades ago.  It turns out that intelligence is more than a few hundred artificial neurons and intelligent operations can be performed with very different solutions, such as [AlphaBeta](https://www.npmjs.com/package/alphabeta).  Even so, Artificial Neural Nets have solved a host of modern problems and continue to be an important component in object and pattern recognition, such as character, music, and face recognition.
 
-Section Links : [Construction](#neuralnet-construction) , [Execution](#execution) , and [Examples](#example)
+Section Links : [Construction](#construction) , [Execution](#execution) , [Examples](#example) , [Misc](#misc) , [Related](#related-ai-projects) , and [References](#references)
 
-# Usage
+# Construction
 
-## NeuralNet construction
-
-### neuralnet = require('neuralnet')( config )
+### NeuralNet constructor
+```js
+var NeuralNetConstructor = require('neuralnet')
+var neuralnet = NeuralNetConstructor( config )
+```
 Super-minimalistic configuration which works in most cases:
 ```js
 var config = {
 	inputs 				: numberOfInputs , 
 	outputs				: numberOfOutputs
 }
-var neuralnet = require('neuralnet')( config );
+var NeuralNetConstructor = require('neuralnet')
+var neuralnet = NeuralNetConstructor( config )
 ```
 
 That is all the configuration you need to get started.  Jump to [the Execution section](#execution) for the [prediction](#neuralnetpredict-inputarray) and [training](#neuralnettrain-inputarray-expectedoutputarray) functions.
 
-#### Full Config
+### Full Config
 If you need more control there are a few more configuration options you can set like so:
 ```js
 var config = {
@@ -77,7 +78,7 @@ config.numberOfHiddenLayers++
 var thickerNeuralNet = neuralnet.new(config)
 ```
 
-## Execution
+# Execution
 NeuralNet takes an array of decimal numbers, expecting it to be the size of *inputs* in length and returns an array of decimal numbers in length equal to *outputs*.  The numbers the NeuralNet takes as input is any decimal number from 0.0 to 1.0.  For output the reasonable range is more like 0.1 to 0.9.  If you want to input and output numbers outside of this range you'll need to do the mathmatical mapping.  Typically though the input is used in a binary way, either exactly 0 or exactly 1, as is the expected output for training purposes.
 
 ### neuralnet.predict( inputArray )
@@ -126,25 +127,25 @@ var actualPredictionArray = neuralnet.train(
 
 If you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*
 
-## Template
+### Template
 A simple template which has one input array, one training output array, and trains the NeuralNet once.
 ```
 node example/template.js
 ```
 
-## Rock Paper Sissors (Boolean example)
+### Rock Paper Sissors (Boolean example)
 Boolean operations is the classic use of Neural Nets, either fire or don't fire.  In this example the Neural Net learns the rules of the game of Rock Paper Sissors.
 ```
 node example/rock_paper_sissors.js
 ```
 
-## Multiplication (Grayscale example)
+### Multiplication (Grayscale example)
 Grayscale means using the actual output as it is and not converting it to a true/false.  This example shows that the numeric value of the output can be fairly precise as an estimator, not just a boolean operation.
 ```
 node example/multiply.js
 ```
 
-## Rotation of an image
+### Rotation of an image
 Learn to rotate a 4x4 black and white image by 90 degrees.  The 4x4 is printed to the screen so you can see how the NeuralNet is doing.  I was quite amazed at how few learning sessions it needed to solve this problem and how well it does.  Honestly I was expecting it to kinda get it but have some trouble and instead it caught on very quickly and accurately.
 ```
 # the default 4x4 image
@@ -157,7 +158,7 @@ node example/rotate.js 5
 node example/rotate.js 8
 ```
 
-## Projectile (Grayscale example)
+### Projectile (Grayscale example)
 Estimate the motion of a rock (or anything really) being thrown up and then coming back down.
 ```js
 example/projectile.js
@@ -166,13 +167,19 @@ example/projectile.js
 
 # Misc
 
-## neuralnet.layers
+### neuralnet.layers
 
 You can inspect and modify the data in the layers by accessing the layers, although there probably isn't a need.
 ```js
 var layers = neuralnet.layers
 ```
 
+# Related AI Projects
+This is part of a set of related projects.
+
+* [AlphaBeta](https://www.npmjs.com/package/alphabeta)
+* [GeneticAlgorithm](https://www.npmjs.com/package/geneticalgorithm)
+* [NeuralNet](https://www.npmjs.com/package/neuralnet)
 
 # References
 
