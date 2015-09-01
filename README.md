@@ -186,6 +186,8 @@ This is part of a set of related projects.
 * [Instructor: Patrick Winston from MIT](https://www.youtube.com/watch?v=q0pm3BrIUFo)
 * [Wikipedia entry for Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network)
 
+# Alternate Neural Net Project
+[synaptic](https://www.npmjs.com/package/synaptic) is a feature-rich but complicated-to-use Neural Net package.  It includes LSTM (Long Short Term Memory) and other enhancements.
 
 [gitter-url]: https://gitter.im/panchishin/neuralnet
 [gitter-image]: https://badges.gitter.im/panchishin/neuralnet.png
