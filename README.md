@@ -1,5 +1,4 @@
-
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url] 
+[![Issues][issues-image]][issues-url] [![Downloads][downloads-image]][downloads-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url]
 
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
@@ -191,12 +190,14 @@ This is part of a set of related projects.
 # Alternate Neural Net Project
 [synaptic](https://www.npmjs.com/package/synaptic) is a feature-rich but complicated-to-use Neural Net package.  It includes LSTM (Long Short Term Memory) and other enhancements.
 
+[issues-url]: https://github.com/panchishin/neuralnet/issues
+[issues-image]: https://img.shields.io/github/issues/panchishin/neuralnet.svg
+
 [gitter-url]: https://gitter.im/panchishin/neuralnet
 [gitter-image]: https://badges.gitter.im/panchishin/neuralnet.png
-[downloads-image]: http://img.shields.io/npm/dm/neuralnet.svg
 
-[npm-url]: https://npmjs.org/package/neuralnet
-[npm-image]: http://img.shields.io/npm/v/neuralnet.svg
+[downloads-image]: http://img.shields.io/npm/dm/neuralnet.svg
+[downloads-url]: https://www.npmjs.com/~panchishin
 
 [travis-url]: https://travis-ci.org/panchishin/neuralnet
 [travis-image]: http://img.shields.io/travis/panchishin/neuralnet.svg
