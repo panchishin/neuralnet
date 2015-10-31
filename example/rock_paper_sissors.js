@@ -5,7 +5,6 @@ var ROCK = 0 , PAPER = 1 , SISSORS = 2
 
 var config = {
 	inputs 				: 6 ,
-	hiddenNodesPerLayer	: 4 ,	/* these are simple rules */
 	outputs				: 2
 }
 
@@ -43,9 +42,21 @@ function createOutputs(player1,player2) {
 }
 
 function doOneTraining() {
+	var allequal = true
 	for( var a = 0 ; a < 3 ; a ++)
-		for( var b = 0 ; b < 3 ; b ++)
-			neuralnet.train( createInputs(a,b) , createOutputs(a,b) )
+		for( var b = 0 ; b < 3 ; b ++) {
+			var actual = neuralnet.predict( createInputs(a,b) )
+			var expected = createOutputs(a,b)
+			var equal = true
+			for( var index = 0 ; index < expected.length && equal ; index++) {
+				equal = Math.round(actual[index]) == Math.round(expected[index])
+			}
+			if ( !equal ) {
+				neuralnet.train( createInputs(a,b) , createOutputs(a,b) )
+			}
+			allequal = allequal && equal
+		}
+	return allequal
 }
 
 
@@ -78,16 +89,15 @@ console.log("\nPrior to training, here is how it preforms:\n")
 example()
 
 
-var TRAINING = 500
+var TRAINING = 1000
 
 console.log("\n=== Training starts ===");
-for( var count = 0 ; count < TRAINING ; count ++) {
-	doOneTraining()
+for( var count = 0 ; count < TRAINING && !doOneTraining() ; count ++) {
 	if ( count % 20 == 0 ) { process.stdout.write(".") }
 }
 console.log("\n=== Training ends ===");
 
-console.log("\nHere is how it preforms after training "+TRAINING+" iterations:\n")
+console.log("\nHere is how it preforms after training "+count+" iterations:\n")
 example()
 
 console.log()
