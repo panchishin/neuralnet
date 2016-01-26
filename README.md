@@ -33,13 +33,27 @@ var config = {
 	hiddenLayers 		: numberOfHiddenLayers , 	// defaults to 1
 	hiddenNodesPerLayer : numberOfNodesPerLayer , 	// defaults to inputs * 5
 	outputs				: numberOfOutputs , 		// defaults to inputs
-	learningRate		: learningRate				// defaults to 1
+	learningRate		: learningRate,				// defaults to 1
+	filterTraining		: functionToLimitTraining	// defaults to no filter
 }
 var neuralnet = require('neuralnet')( config );
 ```
 That creates one instance of a NeuralNet calculator which uses the initial configuration you supply.  Other than 'inputs' all configuration options are optional.
 
 *Implementation Note* : There is actually an additional input beyond what you specify in the configuration which is always set to -1.  No need to add one if you were thinking of doing so, and no need to remove it because it will only help your NeuralNet.
+
+The **filterTraining** is used to limit training.  The default works fine, but suppose you are training a binary decision and you don't want to over train.  The desired output is 0 and 1, but you really only care if the output is less than .5 or greater than .5 because you round.  Here is an example filterTraining to prevent training a neural net that has already answered correctly enough:
+```
+function ( output , expected ) {
+	var equalEnough = true
+	for( var i = 0 ; i < expected.length && equalEnough ; i++ ) {
+		equalEnough = ( Math.round( expected[i] ) == Math.round( output[i] ) )
+	}
+	// only train if the output and expected are not equal enough
+	return ! equalEnough
+}
+```
+If **filterTraining** returns true then the data will pass the filter and go on to train the neural net.  If **filterTraining** returns fals then the data will be blocked.
 
 ### neuralnet.clone( )
 Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
@@ -122,6 +136,8 @@ var actualPredictionArray = neuralnet.train(
 								learningRate
 							)
 ```
+
+
 # Example
 
 If you have included NeuralNet as a node package then first change directory to *node_packages/neuralnet*

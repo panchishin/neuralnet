@@ -34,11 +34,19 @@ function printImages( images ) {
 	}
 }
 
+var equal = true
 var neuralNetConfig = {
 	inputs 	: SIZE*SIZE ,
 	outputs	: SIZE*SIZE ,
 	hiddenNodesPerLayer : SIZE*SIZE ,
-	hiddenLayers : 1
+	hiddenLayers : 1 ,
+	filterTraining :	function ( output , expected ) {
+		var equal = true
+		for( var i = 0 ; i < expected.length && equal ; i++ ) {
+			equal = ( Math.round( expected[i] ) == Math.round( output[i] ) )
+		}
+		return !equal
+	}
 }
 
 var neuralnet = require("../neuralnet.js")(neuralNetConfig)
@@ -58,23 +66,36 @@ function printPrediction() {
 	}
 }
 
-function train() {
+function train(learningRate) {
 	var input = createImage()
 	var expected = rotateImage(input)
-	neuralnet.train(input,expected)
+	neuralnet.train(input,expected,learningRate)
+	return !equal
+
 }
 
 var session = 0
-while( session < 100*SIZE*SIZE ) {
-	train()
+var accuracy = 0
+var best = 0
+var learningRate = neuralnet.learningRate()
+var lambda = 0.01
+var target = ( 1 - lambda * 2 )
+while(  accuracy < target ) {
+	accuracy = accuracy * ( 1 - lambda ) + ( train(learningRate) ? 0 : lambda )
 	if ( session % 250 == 0 ) {
-		console.log("\nCompleted " + session + " training sessions")
-		printPrediction()
+		console.log("Completed " + session + " training sessions with a rolling accuracy of " + Math.round( accuracy * 100 ) + "% and learningRate of " + learningRate )
+//		printPrediction()
 	} 
 	session++
+	if ( accuracy < best - lambda * 2 ) {
+		learningRate *= ( 1 - lambda )
+		best = accuracy
+	} else {
+		best = accuracy > best ? accuracy : best
+	}
 }
-console.log("\nCompleted " + session + " training sessions")
-printPrediction()
+console.log("\nCompleted " + session + " training sessions with a rolling accuracy of " + Math.round( accuracy * 100 ) + "% and learningRate of " + Math.round( learningRate * 100 ) + "%" )
+// printPrediction()
 
 console.log("\nHere are some example rotations after training")
 printPrediction()

@@ -74,8 +74,15 @@ var predict = function( input , layers ) {
 	updateNodeValues(layers);
 }
 
-var train = function( input , layers , expectedOutput , learningRate ) {
+var train = function( input , layers , expectedOutput , learningRate , filterTraining ) {
 	predict( input , layers );
+
+	if ( filterTraining && typeof filterTraining == "function" ) {
+		if ( ! filterTraining( layers[ layers.length - 1].nodes , expectedOutput ) ) {
+			return false
+		}
+	}
+
 	updateOneLayersError( layers[ layers.length - 1 ] , expectedOutput );
 	updateConnectionWeights( layers[ layers.length - 2 ] , layers[ layers.length - 1 ] , learningRate);
 
@@ -83,6 +90,8 @@ var train = function( input , layers , expectedOutput , learningRate ) {
 		updateOneLayersError( layers[ i + 1 ] , layers[ i + 2 ] );
 		updateConnectionWeights( layers[ i ] , layers[ i + 1 ] , learningRate);
 	}
+
+	return true
 
 }
 
@@ -112,6 +121,7 @@ var create = function( configuration ) {
 	config.hiddenNodesPerLayer = config.hiddenNodesPerLayer || config.inputs * 5
 	config.outputs = config.outputs || config.inputs
 	config.learningRate = Math.max(0,config.learningRate * 1.0) || 1
+	config.filterTraining = ( configuration && configuration.filterTraining ) ? configuration.filterTraining : undefined
 
 	if ( config.hiddenLayers <= 0 ) { fail("Must have at least 1 hidden layer") }
 	
@@ -127,7 +137,7 @@ var create = function( configuration ) {
 			return result
 		},
 		train : function( input , output , learningRate ) {
-			train( input , this.layers , output , learningRate || config.learningRate );
+			train( input , this.layers , output , learningRate || config.learningRate , config.filterTraining );
 			return this.layers[this.layers.length - 1].nodes
 		},
 		clone : function( ) {
@@ -143,7 +153,9 @@ var create = function( configuration ) {
 			return config.learningRate
 		},
 		config : function() {
-			return clone(config)
+			var result = clone(config)
+			result.filterTraining = config.filterTraining
+			return result
 		}
 	}		
 }
