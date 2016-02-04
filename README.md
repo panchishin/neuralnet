@@ -1,4 +1,4 @@
-[![Issues][issues-image]][issues-url] [![Downloads][downloads-image]][downloads-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url]
+[![Downloads][downloads-image]][downloads-url] [![Auto Test Status][travis-image]][travis-url] [![license][license-image]][license-url] [![Gitter chat][gitter-image]][gitter-url]
 
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
@@ -211,9 +211,6 @@ This is part of a set of related projects.
 
 # Alternate Neural Net Project
 [synaptic](https://www.npmjs.com/package/synaptic) is a feature-rich but complicated-to-use Neural Net package.  It includes LSTM (Long Short Term Memory) and other enhancements.
-
-[issues-url]: https://github.com/panchishin/neuralnet/issues
-[issues-image]: https://img.shields.io/github/issues/panchishin/neuralnet.svg
 
 [gitter-url]: https://gitter.im/panchishin/neuralnet
 [gitter-image]: https://badges.gitter.im/panchishin/neuralnet.png
