@@ -113,6 +113,16 @@ function createLayers(config) {
 	return layers
 }
 
+function toFunction(arg) {
+	if ( typeof arg == 'string' ) {
+		var result;
+		eval( "result = " + arg )
+		return result;
+	} else {
+		return arg
+	}
+}
+
 var create = function( configuration ) {
 	var config = configuration || {}
 	config = clone(config)
@@ -121,12 +131,14 @@ var create = function( configuration ) {
 	config.hiddenNodesPerLayer = config.hiddenNodesPerLayer || config.inputs * 5
 	config.outputs = config.outputs || config.inputs
 	config.learningRate = Math.max(0,config.learningRate * 1.0) || 1
-	config.filterTraining = ( configuration && configuration.filterTraining ) ? configuration.filterTraining : undefined
+	config.filterTraining = toFunction( ( configuration && configuration.filterTraining ) ? configuration.filterTraining : undefined )
+
+	config.layers = config.layers || createLayers(config)
 
 	if ( config.hiddenLayers <= 0 ) { fail("Must have at least 1 hidden layer") }
 	
 	return { 
-		layers : createLayers(config),
+		layers : config.layers,
 		predict : function( input ) {
 			predict( input , this.layers )
 			return this.layers[this.layers.length - 1].nodes
@@ -142,11 +154,12 @@ var create = function( configuration ) {
 		},
 		clone : function( ) {
 			var item = create(config);
-			item.layers = JSON.parse(JSON.stringify( this.layers ));
 			return item;
 		},
 		new : function( configuration ) {
-			return create( configuration || config )
+			var result = create( configuration || config )
+			result.layers = createLayers(config)
+			return result
 		},
 		learningRate : function( learningRate ) {
 			config.learningRate = Math.max(0,learningRate * 1.0) || config.learningRate
@@ -154,8 +167,12 @@ var create = function( configuration ) {
 		},
 		config : function() {
 			var result = clone(config)
-			result.filterTraining = config.filterTraining
+			result.filterTraining = config.filterTraining ? config.filterTraining.toString() : config.filterTraining;
 			return result
+		},
+		reset : function() {
+			this.layers = createLayers(config)
+			return this;
 		}
 	}		
 }

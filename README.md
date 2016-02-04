@@ -88,7 +88,13 @@ Retrieve a copy of the complete configuration that this NeuralNet uses.  Perhaps
 ```js
 var config = neuralnet.config()
 config.numberOfHiddenLayers++
-var thickerNeuralNet = neuralnet.new(config)
+var thickerNeuralNet = neuralnet.new(config).reset()
+```
+
+### neuralnet.reset( )
+Randomize the weights connecting the layers in the neural net and return the neuralnet.
+```js
+var aCopyWithRandomizedWeights = neuralnet.clone().reset();
 ```
 
 # Execution
