@@ -2,7 +2,9 @@
 
 An implementation of the classic Artificial Neural Net with back propagation learning.
 
-When Artificial Neural Nets were first invented and picked up by mainstream popular science many people believed it was going to usher in a new era of thinking machines.  That was many decades ago.  It turns out that intelligence is more than a few hundred artificial neurons and intelligent operations can be performed with very different solutions, such as [AlphaBeta](https://www.npmjs.com/package/alphabeta).  Even so, Artificial Neural Nets have solved a host of modern problems and continue to be an important component in object and pattern recognition, such as character, music, and face recognition.
+When Artificial Neural Nets were first invented and picked up by mainstream popular science many people believed it was going to usher in a new era of thinking machines.  That was many decades ago and it turns out that intelligence is more than a few hundred artificial neurons.  Way back when memory was measured in MB and CPU was measured in MHz (1,000x slower than today) intelligent operations could more effectively be performed with very different solutions, such as [AlphaBeta](https://www.npmjs.com/package/alphabeta).  Fast forward to today and  Artificial Neural Nets have solved a host of modern problems and are an important component in classification, heuristics, and content generation.
+
+For more serious implementations try Tensorflow, Torch, or other such frameworks.
 
 Section Links : [Construction](#construction) , [Execution](#execution) , [Examples](#example) , [Misc](#misc) , [Related](#related-ai-projects) , and [References](#references)
 
@@ -29,12 +31,12 @@ That is all the configuration you need to get started.  Jump to [the Execution s
 If you need more control there are a few more configuration options you can set like so:
 ```js
 var config = {
-	inputs 				: numberOfInputs , 			// defaults to 2
-	hiddenLayers 		: numberOfHiddenLayers , 	// defaults to 1
-	hiddenNodesPerLayer : numberOfNodesPerLayer , 	// defaults to inputs * 5
-	outputs				: numberOfOutputs , 		// defaults to inputs
-	learningRate		: learningRate,				// defaults to 1
-	filterTraining		: functionToLimitTraining	// defaults to no filter
+	inputs 				: numberOfInputs , 		// defaults to 2
+	hiddenLayers 			: numberOfHiddenLayers ,	// defaults to 1
+	hiddenNodesPerLayer 		: numberOfNodesPerLayer ,	// defaults to inputs * 5
+	outputs				: numberOfOutputs ,		// defaults to inputs
+	learningRate			: learningRate ,		// defaults to 1
+	filterTraining			: functionToLimitTraining	// defaults to no filter
 }
 var neuralnet = require('neuralnet')( config );
 ```
@@ -53,7 +55,7 @@ function ( output , expected ) {
 	return ! equalEnough
 }
 ```
-If **filterTraining** returns true then the data will pass the filter and go on to train the neural net.  If **filterTraining** returns fals then the data will be blocked.
+If **filterTraining** returns true then the data will pass the filter and go on to train the neural net.  If **filterTraining** returns false then the data will be blocked.  **NOTE** There are much better ways of preventing over-fitting which are not covered in this basic npm module!
 
 ### neuralnet.clone( )
 Use *.clone* if you want another NeuralNet based on the configuration and learning of an existing NeuralNet.  This allows you to take a snapshot of a NeuralNet after some training and explore what would happen if it received different training without modifying the original.
@@ -77,12 +79,14 @@ Retrieve the learning rate of this NeuralNet.
 ```js
 var whatsMyLearningRate = neuralnet.learningRate()
 ```
+A good initial value to try is 1.
 
 ### neuralnet.learningRate( newLearningRate )
 Change the learning rate of this NeuralNet.  It returns the value set if it is a legal value otherwise it returns the previously set configuration.
 ```js
 var shouldEqualFive = neuralnet.learningRate(5)
 ```
+
 ### neuralnet.config( )
 Retrieve a copy of the complete configuration that this NeuralNet uses.  Perhaps you want see what happens with an additional hidden layer.  No problem, you can do that like so:
 ```js

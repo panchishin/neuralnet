@@ -1,6 +1,6 @@
 {
   "name": "neuralnet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a general purpose neural net with back propagation, an A.I. tool useful for machine learning and decision making",
   "main": "neuralnet.js",
   "devDependencies": {
@@ -20,7 +20,9 @@
     "ann",
     "nn",
     "machine learning",
-    "ai"
+    "ai",
+    "backpropagation",
+    "back propagation"
   ],
   "author": "Anton Panchishin",
   "license": "unlicense",
